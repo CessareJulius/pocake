@@ -46,13 +46,14 @@ class User extends Entity
 
     protected function _setClave($value)
     {
-        if (empty($value)) 
+        if (!empty($value)) 
         {
             $hasher = new DefaultPasswordHasher();
             return $hasher->hash($value);
 
-        } else 
-        {
+        } 
+        else 
+        {            
             $id_user = $this->_properties['id'];
             $user = TableRegistry::get('Users')->recoverPassword($id_user);
             return $user;

@@ -11,7 +11,7 @@
                         <th scope="col"><?= $this->Paginator->sort('nombre') ?></th>
                         <th scope="col"><?= $this->Paginator->sort('apellido') ?></th>
                         <th scope="col"><?= $this->Paginator->sort('email', 'Correo Electronico') ?></th>
-                        <th scope="col" class="actions"><?= __('Actions') ?></th>
+                        <th scope="col" class="actions"><?= __('Acciones') ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +24,7 @@
                         <td class="actions">
                             <?= $this->Html->link(__('Ver'), ['action' => 'view', $user->id], ['Class' => 'btn btn-sm btn-info']) ?>
                             <?= $this->Html->link(__('Editar'), ['action' => 'edit', $user->id], ['Class' => 'btn btn-sm btn-success']) ?>
-                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id],['Class' => 'btn btn-sm btn-danger'], ['confirm' => __('Esta seguro que desea borrarlo # {0}?', $user->id)]) ?>
+                            <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $user->id],['Class' => 'btn btn-sm btn-danger'], ['confirm' => __('Esta seguro que desea borrar este usuario # {0}?', $user->id)]) ?>
                         </td>
                     </tr>
                     <?php endforeach; ?>

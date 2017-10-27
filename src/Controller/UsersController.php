@@ -12,7 +12,7 @@ class UsersController extends AppController
     public function beforeFilter(\Cake\Event\Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['add']);
+        $this->Auth->allow(['add', 'login']);
     }
 
     public function isAuthorized($user)
@@ -48,6 +48,10 @@ class UsersController extends AppController
             }
         }
         //$this->Flash->error('se ve o no se ve?');
+
+        if ($this->Auth->user()) {
+            return $this->redirect(['controller' => 'Users', 'action' => 'home']);
+        }
     }
 
     public function home()
@@ -124,6 +128,23 @@ class UsersController extends AppController
         }
 
         $this->set(compact("user"));
+    }
+
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $user = $this->Users->get($id);
+
+        if($this->Users->delete($user))
+        {
+            $this->Flash->success('El usuario ha sido eliminado correctamente');
+        }
+        else
+        {
+            $this->Flash->error('El usuario no pudo ser eliminado. Por Favor intente nuevamente.');
+        }
+
+        return $this->redirect(['action' => 'home']);
     }
 
 }

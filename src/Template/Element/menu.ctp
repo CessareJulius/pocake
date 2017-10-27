@@ -8,7 +8,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <?= $this->Html->Link('POCAKE', ['controller' => 'Users', 'action' => 'login'], ['Class'=> 'navbar-brand']);?>
+        <?= $this->Html->Link('POCAKE', ['controller' => 'Pages', 'action' => 'inicio'], ['Class'=> 'navbar-brand']);?>
       </div>
       <div id="navbar" class="navbar-collapse collapse">
       <?php 
@@ -57,7 +57,7 @@
 					 <div class="row">
 							<div class="col-md-12">
                             <p><center>Ingrese sus Datos</center></p>
-                            <?= $this->Form->create() ?>  
+                            <?= $this->Form->create('', ['url' => ['controller' => 'users', 'action' => 'login']]) ?>  
 										<div class="form-group">
                                             <?= $this->Form->input('email', ['class' => 'form-control','id' => 'exampleInputEmail2', 'placeholder' => 'Correo Electronico', 
                                                 'label' => false, 'required', 'autofocus']) ?>

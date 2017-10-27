@@ -103,6 +103,6 @@ class UsersTable extends Table
     public function recoverPassword($id)
     {
         $user = $this->get($id);
-        return $user->password;
+        return $user->clave;
     }
 }
