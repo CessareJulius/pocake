@@ -23,7 +23,7 @@ setTimeout( function() { noti.close() }, 10000)
 
 </script>
 
-<h1>Bienvenido Sr. <?= $current_user['nombre'] . ' ' . $current_user['apellido']?></h1>
+<h1>Bienvenido <?= $current_user['nombre'] . ' ' . $current_user['apellido']?></h1>
 
            
 
