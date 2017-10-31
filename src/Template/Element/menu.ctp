@@ -31,8 +31,6 @@ if (isset($current_user)):
             endif;
             ?>
             <li class = "icn_new_article"><?= $this->Html->Link('Crear Bookmark', ['controller' => 'Bookmarks', 'action' => 'add']); ?></li>
-            <li class = "icn_edit_article"><a href = "#">Editar Bookmark</a></li>
-            <li class = "icn_alert_error"><a href = "#">Eliminar Bookmark</a></li>
         </ul>
         <?php
         if (isset($current_user) and $current_user['role'] == 'admin'):

@@ -98,14 +98,14 @@ class BookmarksController extends AppController {
         if ($this->request->is(['patch', 'post', 'put'])) {
             $bookmark = $this->Bookmarks->patchEntity($bookmark, $this->request->getData());
             if ($this->Bookmarks->save($bookmark)) {
-                $this->Flash->success(__('The bookmark has been saved.'));
+                $this->Flash->success(__('El Bookmark ha sido editado con exito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The bookmark could not be saved. Please, try again.'));
+            $this->Flash->error(__('El Bookmark no pudo ser editado. Por favor intente nuevamente.'));
         }
         $this->set(compact('bookmark'));
-        $this->set('_serialize', ['bookmark']);
+        //$this->set('_serialize', ['bookmark']);
     }
 
     /**
