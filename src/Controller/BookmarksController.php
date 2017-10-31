@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -9,19 +10,16 @@ use App\Controller\AppController;
  *
  * @method \App\Model\Entity\Bookmark[] paginate($object = null, array $settings = [])
  */
-class BookmarksController extends AppController
-{
-    public function isAuthorized($user)
-    {
-        if(isset($user['role']) and $user['role'] === 'user')
-        {
-            if (in_array($this->request->action, ['add', 'index', 'edit' ,'delete']))
-            {
+class BookmarksController extends AppController {
+
+    public function isAuthorized($user) {
+
+        if (isset($user['role']) and $user['role'] === 'user') {
+            if (in_array($this->request->action, ['add', 'index', 'edit', 'delete'])) {
                 return true;
             }
         }
         return parent::isAuthorized($user);
-
     }
 
     /**
@@ -29,12 +27,11 @@ class BookmarksController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
-    {   
-        
+    public function index() {
+
         //Asi estaba por default
         //$bookmarks = $this->paginate($this->Bookmarks);
-        
+
         $this->paginate = [
             'conditions' => ['user_id' => $this->Auth->user('id')]
         ];
@@ -42,7 +39,7 @@ class BookmarksController extends AppController
         $bookmarks = $this->paginate($this->Bookmarks);
 
         $this->set('bookmarks', $bookmarks);
-        
+
         //$this->set(compact('bookmarks'));
         //$this->set('_serialize', ['bookmarks']);
     }
@@ -54,8 +51,7 @@ class BookmarksController extends AppController
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function view($id = null)
-    {
+    public function view($id = null) {
         $bookmark = $this->Bookmarks->get($id, [
             'contain' => []
         ]);
@@ -64,13 +60,13 @@ class BookmarksController extends AppController
         $this->set('_serialize', ['bookmark']);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
+    public function viewall() {
+        $bookmarks = $this->paginate($this->Bookmarks);
+
+        $this->set('bookmarks', $bookmarks);
+    }
+
+    public function add() {
         $bookmark = $this->Bookmarks->newEntity();
         if ($this->request->is('post')) {
             $bookmark = $this->Bookmarks->patchEntity($bookmark, $this->request->getData());
@@ -92,8 +88,7 @@ class BookmarksController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null) {
         $bookmark = $this->Bookmarks->get($id, [
             'contain' => []
         ]);
@@ -117,8 +112,7 @@ class BookmarksController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
-    {
+    public function delete($id = null) {
         $this->request->allowMethod(['post', 'delete']);
         $bookmark = $this->Bookmarks->get($id);
         if ($this->Bookmarks->delete($bookmark)) {
@@ -129,4 +123,5 @@ class BookmarksController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
 }

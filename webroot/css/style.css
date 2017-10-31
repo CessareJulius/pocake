@@ -32,13 +32,13 @@
 
 /* Li de la Barra de navegacion */
 .navbar-default .navbar-nav>li>a {
-    color: #000;
+    color: #fff;
 }
 
 /* Li de la Barra de navegacion en hover*/
 .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
-    color: #f2f4f5;
-    background-color: transparent;
+    color: #00090d;
+    background-color: #e7e7e7;
 }
 
 /* Boton enviar de la Barra de navegacion en hover*/
@@ -129,7 +129,7 @@
     background-color:rgba(255,255,255,.8);
 }
 #login-dp .help-block{
-    font-size:12px    
+    font-size:12px
 }
 #login-dp .bottom{
     background-color:rgba(255,255,255,.8);
@@ -138,7 +138,7 @@
     padding:14px;
 }
 #login-dp .social-buttons{
-    margin:12px 0    
+    margin:12px 0
 }
 #login-dp .social-buttons a{
     width: 49%;
@@ -152,7 +152,7 @@
 }
 .btn-fb:hover{
     color: #fff;
-    background-color:#496ebc 
+    background-color:#496ebc
 }
 .btn-tw{
     color: #fff;
