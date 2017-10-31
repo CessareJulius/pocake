@@ -11,6 +11,18 @@ use App\Controller\AppController;
  */
 class BookmarksController extends AppController
 {
+    public function isAuthorized($user)
+    {
+        if(isset($user['role']) and $user['role'] === 'user')
+        {
+            if (in_array($this->request->action, ['add', 'index', 'edit' ,'delete']))
+            {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+
+    }
 
     /**
      * Index method
@@ -18,11 +30,21 @@ class BookmarksController extends AppController
      * @return \Cake\Http\Response|void
      */
     public function index()
-    {
+    {   
+        
+        //Asi estaba por default
+        //$bookmarks = $this->paginate($this->Bookmarks);
+        
+        $this->paginate = [
+            'conditions' => ['user_id' => $this->Auth->user('id')]
+        ];
+
         $bookmarks = $this->paginate($this->Bookmarks);
 
-        $this->set(compact('bookmarks'));
-        $this->set('_serialize', ['bookmarks']);
+        $this->set('bookmarks', $bookmarks);
+        
+        //$this->set(compact('bookmarks'));
+        //$this->set('_serialize', ['bookmarks']);
     }
 
     /**

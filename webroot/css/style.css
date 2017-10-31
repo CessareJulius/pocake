@@ -1,3 +1,9 @@
+.container{
+    padding-right: 70px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
 
 /* Barra de navegacion*/
 .navbar {

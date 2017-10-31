@@ -21,26 +21,64 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
+        Pocake:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['bootstrap.min','jumbotron','font-awesome.min','signin']) ?>
-    <?= $this->Html->css('style') ?>
-    <?= $this->Html->script(['jquery.min','popper.min','bootstrap.min']) ?>
+    <?= $this->Html->css(['bootstrap.min','style','layout','font-awesome.min','signin']) ?>
+    <?php //$this->Html->css('style') ?>
+
+
+    <?= $this->Html->script(['jquery.min','jquery.tablesorter.min', 'jquery.equalHeight', 'popper.min','bootstrap.min', 'hideshow']) ?>
+
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+	<script type="text/javascript">
+	$(document).ready(function() 
+    	{ 
+      	  $(".tablesorter").tablesorter(); 
+   	 } 
+	);
+	$(document).ready(function() {
+
+	//When page loads...
+	$(".tab_content").hide(); //Hide all content
+	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
+	$(".tab_content:first").show(); //Show first tab content
+
+	//On Click Event
+	$("ul.tabs li").click(function() {
+
+		$("ul.tabs li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		$(".tab_content").hide(); //Hide all tab content
+
+		var activeTab = $(this).find("a").attr("href"); //Find the href attribute value to identify the active tab + content
+		$(activeTab).fadeIn(); //Fade in the active ID content
+		return false;
+	});
+
+});
+    </script>
+
 </head>
 <body>
+    <?= $this->element('nav') ?>
     <?= $this->element('menu') ?>
+<?php 
+    if (isset($current_user)):     
+?>
+<section id="main" class="column">
+        <?= $this->Flash->render() ?>
 
-
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
-    </div>
+        <div class="container clearfix">
+            <?= $this->fetch('content') ?>
+        </div>
+</section>
+<?php endif ?>
 </body>
 </html>
