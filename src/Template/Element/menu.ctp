@@ -30,7 +30,7 @@ if (isset($current_user)):
                 <?php
             endif;
             ?>
-            <li class = "icn_new_article"><a href = "#">Nuevo Bookmark</a></li>
+            <li class = "icn_new_article"><?= $this->Html->Link('Crear Bookmark', ['controller' => 'Bookmarks', 'action' => 'add']); ?></li>
             <li class = "icn_edit_article"><a href = "#">Editar Bookmark</a></li>
             <li class = "icn_alert_error"><a href = "#">Eliminar Bookmark</a></li>
         </ul>
@@ -62,6 +62,18 @@ if (isset($current_user)):
         </footer>
     </aside><!-- end of sidebar -->
     <?php
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

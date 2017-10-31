@@ -33,7 +33,8 @@ class BookmarksController extends AppController {
         //$bookmarks = $this->paginate($this->Bookmarks);
 
         $this->paginate = [
-            'conditions' => ['user_id' => $this->Auth->user('id')]
+            'conditions' => ['user_id' => $this->Auth->user('id')],
+            'order' => ['created' => 'desc']
         ];
 
         $bookmarks = $this->paginate($this->Bookmarks);
@@ -70,15 +71,17 @@ class BookmarksController extends AppController {
         $bookmark = $this->Bookmarks->newEntity();
         if ($this->request->is('post')) {
             $bookmark = $this->Bookmarks->patchEntity($bookmark, $this->request->getData());
+            $bookmark->user_id = $this->Auth->user('id');
+
             if ($this->Bookmarks->save($bookmark)) {
-                $this->Flash->success(__('The bookmark has been saved.'));
+                $this->Flash->success('El enlace se creo correctamente.');
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The bookmark could not be saved. Please, try again.'));
+            $this->Flash->error('El Enlace no se pudo crear. POr favor intente nuevamente');
         }
         $this->set(compact('bookmark'));
-        $this->set('_serialize', ['bookmark']);
+        //$this->set('_serialize', ['bookmark']);
     }
 
     /**
