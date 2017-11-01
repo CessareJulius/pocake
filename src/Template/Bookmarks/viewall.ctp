@@ -6,11 +6,15 @@
         <ul class="list-group">
             <?php foreach ($bookmarks as $bookmark): ?>
                 <li class="list-group-item">
-                    <h4 class="list-group-item-heading"><?= h($bookmark->title) ?></h4>
+                    <h4 class="list-group-item-heading"><?= h($bookmark->title) ?>
+                        <h4>Id del usuario que creo el link: <?= h($bookmark->user_id) ?></h4>
+                        <?= $this->Form->postLink(__('Eliminar'), ['action' => 'delete', $bookmark->id],['Class' => 'btn btn-sm btn-danger pull-right'], ['confirm' => __('Esta seguro que desea borrar este usuario # {0}?', $bookmark->id)]) ?>
+                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $bookmark->id], ['Class' => 'btn btn-sm btn-success pull-right']) ?>
+                    </h4>
                     <p>
                         <strong class="text-info">
                             <small>
-                                <?= $this->HTML->Link($bookmark->url, null, ['target' => 'blank']) ?>
+                                <?= $this->Text->autoLink($bookmark->url, ['target' => 'blank']) ?>
                             </small>
                         </strong>
                     </p>
