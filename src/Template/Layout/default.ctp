@@ -69,9 +69,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <body>
     <?= $this->element('nav') ?>
     <?= $this->element('menu') ?>
-<?php 
-    if (isset($current_user)):     
-?>
+
 <section id="main" class="column">
         <?= $this->Flash->render() ?>
 
@@ -79,6 +77,5 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <?= $this->fetch('content') ?>
         </div>
 </section>
-<?php endif ?>
 </body>
 </html>
