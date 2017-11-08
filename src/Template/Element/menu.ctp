@@ -61,20 +61,4 @@ if (isset($current_user)):
     </aside><!-- end of sidebar -->
     <?php
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  endif ?>

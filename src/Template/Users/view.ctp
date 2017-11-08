@@ -12,7 +12,7 @@
     <?php
             echo $this->HTML->Link("Editar Datos", ['action'=> 'edit', $user->id]);
     ?>
-    </h4>
+    </h3>
     <dl>
         <dt>Nombre</dt>
         <dd>
